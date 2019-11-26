@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <!-- Webpage Title -->
+  <title>Hello, world!</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- JS -->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- 구글폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+  <!-- style -->
+  <style type="text/css">
+    * {
+      font-family: 'Stylish', sans-serif;
+    }
+   .col-lg{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 800px;
+      height: 400px;
+   }
+   .product-name{
+      font-size: 3rem;
+      margin-right: 100px;
+
+   }
+   .product{
+      margin-bottom: 100px;
+   }
+   .button{
+    margin: 0 auto;
+   }
+   
+  </style>
+
+
+</head>
+<body>
+ <div class="container">
+   <div class="row">
+     <div class="col-lg">
+       <img src="https://picsum.photos/id/1059/1200/400" class="img-fluid" alt="Responsive image">
+     </div>
+     
+   </div>
+  <div class="product">
+       <span class="product-name">상품제목</span><span>가격: 1,000,000원 /개</span>
+       <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+
+  </div>
+  <div>
+    <h1>주문하기</h1>
+  <form>
+  <div class="form-group row">
+    <label for="text" class="col-sm-2 col-form-label">주문자 이름</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" placeholder="name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">주문수량</label>
+    <div class="col-sm-5">
+      <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="text" class="col-sm-2 col-form-label">주소</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" placeholder="address">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="text" class="col-sm-2 col-form-label">전화번호</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" placeholder="phone number">
+    </div>
+  </div>
+  <!-- <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">주문하기</button>
+    </div>
+  </div> -->
+</form>
+
+
+  </div>
+  <div class="row">
+    <div class="button">
+      <button type="submit" class="btn btn-primary btn-lg">주 문 하 기</button>
+    </div>
+  </div>
+ </div>
+</body>
+</html>
