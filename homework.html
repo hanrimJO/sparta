@@ -43,8 +43,55 @@
    .button{
     margin: 0 auto;
    }
+
    
   </style>
+
+  <script>
+
+    // open api 를 활용하여 주문목록 받아오기
+    function useOrderApi() {
+      $.ajax({
+        type: "GET",
+        url: "http://spartacodingclub.shop/order",
+        data:{},
+        success: function(response) {
+            let order = response['orders'];
+            for(var i = 0; i < order.length; i++){
+              let name = order[i]['name'];
+              let count = order[i]['count'];
+              let address = order[i]['address'];
+              let phone = order[i]['phone'];
+              let html = '<tr>' + '<td>' + name + '</td>' +
+                                  '<td>' + count + '</td>' +
+                                  '<td>' + address + '</td>' +
+                                  '<td>' + phone + '</td>' + 
+                        + '</tr>';
+              console.log(html);
+              $('#tbody').append(html);
+            }
+        }
+      })
+    }
+    // 주문목록 받아오기 실행
+    useOrderApi()
+
+
+    // 주문목록 받아온것에 더하여 주문버튼을 누를때 추가 입력하기
+    function plusOrder() {
+      let name = $('#input-name').val()
+      let amount = $('#exampleFormControlSelect1').val()
+      let address = $('#input-address').val()
+      let number = $('#input-number').val()
+
+      let extraOrder = '<tr>' + '<td>' + name + '</td>' +
+                                  '<td>' + amount + '</td>' +
+                                  '<td>' + address + '</td>' +
+                                  '<td>' + number + '</td>' + 
+                        + '</tr>';
+      $('#tbody').append(extraOrder);
+    }
+  </script>
 
 
 </head>
@@ -61,13 +108,13 @@
        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
 
   </div>
-  <div>
+  <div id="order">
     <h1>주문하기</h1>
   <form>
   <div class="form-group row">
     <label for="text" class="col-sm-2 col-form-label">주문자 이름</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" placeholder="name">
+      <input id="input-name" type="text" class="form-control" placeholder="name">
     </div>
   </div>
   <div class="form-group row">
@@ -85,13 +132,13 @@
   <div class="form-group row">
     <label for="text" class="col-sm-2 col-form-label">주소</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" placeholder="address">
+      <input id="input-address" type="text" class="form-control" placeholder="address">
     </div>
   </div>
   <div class="form-group row">
     <label for="text" class="col-sm-2 col-form-label">전화번호</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" placeholder="phone number">
+      <input id="input-number" type="text" class="form-control" placeholder="phone number">
     </div>
   </div>
   <!-- <div class="form-group row">
@@ -105,9 +152,27 @@
   </div>
   <div class="row">
     <div class="button">
-      <button type="submit" class="btn btn-primary btn-lg">주 문 하 기</button>
+      <button onclick="plusOrder()" type="submit" class="btn btn-primary btn-lg">주 문 하 기</button>
     </div>
   </div>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">이름</th>
+      <th scope="col">수량</th>
+      <th scope="col">주소</th>
+      <th scope="col">전화번호</th>
+    </tr>
+  </thead>
+  <tbody id="tbody">
+    
+    
+  </tbody>
+</table>
+
+
+
  </div>
 </body>
 </html>
