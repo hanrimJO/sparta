@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from pymongo import MongoClient
+import datetime
 
 # mongo db
 client = MongoClient('localhost', 27017)
@@ -23,10 +24,12 @@ for song in songs:
     artist = song.select_one('td.info > .artist').text.lstrip()
     print(rank, title, artist)
 
-    # doc = {
-    #     'rank': int(rank),
-    #     'title': title,
-    #     'artist': artist
-    # }
+    doc = {
+        'rank': int(rank),
+        'title': title,
+        'artist': artist
+    }
 
-    db.chart.update_one({'title': title}, {'$set': {'artist': artist}})
+    db.chart.insert_one(doc)
+
+
