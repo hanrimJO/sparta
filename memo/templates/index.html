@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <!-- Webpage Title -->
+  <title>Hello, world!</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- 구글폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+  <script>
+    $(document).ready(function(){
+        listing();
+
+    })
+    function listing() {
+        $.ajax({
+            type: 'GET',
+            url: '/post',
+            data: {},
+            success: function(res) {
+                console.log(res);
+
+                for (var i = 0; i < res['articles'].length; i++) {
+                  let data = res['articles'][i];
+                  let html = `
+                      <div class="card">
+                       <img class="card-img-top" src="${data['image']}" alt="Card image cap">
+                        <div class="card-body">
+                          <a href="#" class="card-title">${data['title']}</a>
+                          <p class="card-text">${data['desc']}</p>
+                          <p class="card-text comment">${data['comment']}</p>
+                        </div>
+                      </div>
+                     `;
+                     $('.card-columns').append(html);
+                }
+            }
+        })
+    }
+
+    function savePost() {
+        $.ajax({
+            type: 'POST',
+            url: '/post',
+            data: {
+                url_give: $('#posting-url').val(),
+                comment_give: $('#posting-comment').val()
+            },
+            success: function(res) {
+            // 위의 success는 응답값상태가 200번대 일때
+                console.log(res);
+                if (res['result'] === 'success') {
+                  alert('저장 완료!')
+                  window.location.reload()
+                }
+            },
+            error: function(err) {
+            // 위의 error는 응답값상태가 200번대 말고 다른것일때
+                console.log(err);
+                if (res['result'] === 'fail') {
+                  alert('저장실패')
+                }
+            }
+        })
+    }
+
+  </script>
+
+  <!-- style -->
+  <style type="text/css">
+    * {
+      font-family: 'Stylish', sans-serif;
+    }
+    .wrap {
+      width: 900px;
+      margin: auto;
+    }
+    .comment {
+      color: blue;
+      font-weight: bold;
+    }
+    .form-post {
+      max-width: 500px;
+      padding: 2rem;
+      margin: 2rem auto;
+      border-color: #e9ecef;
+      border-radius: 0.3rem;
+      border: solid;
+      display: block;
+    }
+    #posting-box {
+      display: block;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="wrap">
+    <div class="jumbotron">
+      <h1 class="display-4">나홀로 링크 메모장!</h1>
+      <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
+      <hr class="my-4">
+      <p class="lead">
+        <a id="btn-posting-box" onclick="openclose()" class="btn btn-primary btn-lg" href="#" role="button">포스팅박스 열기</a>
+      </p>
+    </div>
+    <div class="form-post" id="posting-box">
+      <div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">아티클 URL</label>
+          <input id="posting-url" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">간단 코멘트</label>
+          <textarea id="posting-comment" class="form-control" rows="2"></textarea>
+        </div>
+        <button onclick="savePost()" type="submit" class="btn btn-primary">기사저장</button>
+      </div>
+    </div>
+    <div class="card-columns"  id="cards-box">
+
+
+
+
+
+
+    </div>
+  </div>
+</body>
+</html>

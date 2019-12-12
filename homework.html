@@ -53,7 +53,7 @@
   </style>
 
   <script>
-
+    
     // open api 를 활용하여 주문목록 받아오기
     function useOrderApi() {
       $.ajax({
@@ -78,24 +78,45 @@
         }
       })
     }
+    useOrderApi();
     // 주문목록 받아오기 실행
-    useOrderApi()
+    
 
 
     // 주문목록 받아온것에 더하여 주문버튼을 누를때 추가 입력하기
-    function plusOrder() {
-      let name = $('#input-name').val()
-      let amount = $('#exampleFormControlSelect1').val()
-      let address = $('#input-address').val()
-      let number = $('#input-number').val()
+    // function plusOrder() {
+    //   let name = $('#input-name').val()
+    //   let amount = $('#exampleFormControlSelect1').val()
+    //   let address = $('#input-address').val()
+    //   let number = $('#input-number').val()
 
-      let extraOrder = '<tr>' + '<td>' + name + '</td>' +
-                                  '<td>' + amount + '</td>' +
-                                  '<td>' + address + '</td>' +
-                                  '<td>' + number + '</td>' + 
-                        + '</tr>';
-      $('#tbody').append(extraOrder);
+    //   let extraOrder = '<tr>' + '<td>' + name + '</td>' +
+    //                               '<td>' + amount + '</td>' +
+    //                               '<td>' + address + '</td>' +
+    //                               '<td>' + number + '</td>' + 
+    //                     + '</tr>';
+    //   $('#tbody').append(extraOrder);
+
+    
+    function plusOrder() {
+      let area = $('#input-address').val();
+      let cnt = $('#exampleFormControlSelect1').val();
+      let name_input = $('#input-name').val();
+      let number = $('#input-number').val();
+
+      let extra_data = {'address': area, 'amount': cnt, 'name': name_input, 'phone': number};
+
+      $.ajax({
+          type: "POST",
+          url: "http://spartacodingclub.shop/order",
+          data: extra_data,
+          success: function(response) {
+              alert('주문 완료 되었습니다.');
+              location.href('homework.html');
+          }
+        })
     }
+    
   </script>
 
 

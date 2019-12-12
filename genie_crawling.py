@@ -41,3 +41,4 @@ def genie(today):
 
 
 genie(date)
+
